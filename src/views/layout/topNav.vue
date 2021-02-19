@@ -26,7 +26,7 @@
 export default {
   data() {
     return {
-      active: 0,
+      active: 1,
       tabs: [{
         name: '关注',
         path: 'follow'
@@ -38,6 +38,9 @@ export default {
         path: 'city'
       }]
     }
+  },
+  mounted () {
+    this.$router.push('/home/find')
   }
 };
 </script>

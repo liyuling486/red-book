@@ -6,6 +6,10 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
+    redirect: { name: 'home' }
+  },
+  {
+    path: '/home',
     name: 'home',
     component: () => import('../views/home'),
     children: [
@@ -22,6 +26,10 @@ const routes = [
         component: () => import('../views/home/city')
       }
     ]
+  },
+  {
+    path: '/msg',
+    component: () => import('../views/msg'),
   }
 ]
 

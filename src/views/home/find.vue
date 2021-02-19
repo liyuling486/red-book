@@ -29,7 +29,7 @@ export default {
   }
 }
 </script>
-<style>
+<style scoped>
 .wrap {
   height: 100%;
   padding: 4px;

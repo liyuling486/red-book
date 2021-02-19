@@ -2,7 +2,7 @@ import _ from 'lodash'
 export function ctxToMap (ctx) {
   const apiMap = {}
   for (const key of ctx.keys()) {
-    const fileKey = key.replace(/\.\/\.js/g, '')
+    const fileKey = key.replace(/\.\/|\.js/g, '')
     const context = ctx(key).default
     if (context) {
       apiMap[fileKey] = context
@@ -23,4 +23,5 @@ export function convertActions (apifunc, prefix = '') {
       actions = _.assign(actions, convertActions(apifunc[key], key + '.'))
     }
   }
+  return actions
 }

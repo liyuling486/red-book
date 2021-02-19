@@ -1,6 +1,6 @@
 <template>
   <div class="wrap">
-    <List :list="listData" />
+    <List :list="listData" @handleColl="handleColl" />
   </div>
 </template>
 <script>
@@ -11,18 +11,20 @@ export default {
   },
   data () {
     return {
-      listData: [{},{},{},{},{},{},{},{},{},{}]
+      listData: []
     }
   },
   methods: {
     getList () {
       this.$store.dispatch('home/news.list').then(res => {
-        console.log(res)
+        this.listData = res.data
       })
+    },
+    handleColl (index) {
+      this.$set(this.listData[index], 'collection', !this.listData[index].collection)
     }
   },
   mounted () {
-    console.log('mounted', this.$store)
     this.getList()
   }
 }
@@ -32,6 +34,7 @@ export default {
   height: 100%;
   padding: 4px;
   background: #FAFAFA;
+  overflow-y: auto;
 }
 
 .list {

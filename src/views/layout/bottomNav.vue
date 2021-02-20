@@ -1,7 +1,7 @@
 <template>
   <van-tabbar v-model="active" active-color="#333">
     <van-tabbar-item to="/">首页</van-tabbar-item>
-    <van-tabbar-item>商城</van-tabbar-item>
+    <van-tabbar-item to="/shop">商城</van-tabbar-item>
     <van-tabbar-item icon="add"></van-tabbar-item>
     <van-tabbar-item to="/msg" :badge="badge">消息</van-tabbar-item>
     <van-tabbar-item>我</van-tabbar-item>
@@ -12,7 +12,7 @@
 export default {
   data() {
     return {
-      active: 0,
+      active: 1,
       badge: 8
     }
   }

@@ -1,4 +1,6 @@
 import Mock from 'mockjs'
+import { apiToJson } from '@/utils'
+
 const Random = Mock.Random
 const getNews = () => {
   const len = Random.integer(20, 30)
@@ -13,11 +15,7 @@ const getNews = () => {
       img2: Random.dataImage('200x150'),
     })
   }
-  return {
-    err: 0,
-    count: len,
-    data: arr
-  }
+  return apiToJson(arr)
 }
 
 const getFollow = () => {
@@ -44,11 +42,7 @@ const getFollow = () => {
     }
     arr.push(item)
   }
-  return {
-    err: 0,
-    count: len,
-    data: arr
-  }
+  return apiToJson(arr)
 }
 
 Mock.mock(/\/home\/news/, 'get', getNews)

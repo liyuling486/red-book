@@ -30,6 +30,10 @@ const routes = [
   {
     path: '/msg',
     component: () => import('../views/msg'),
+  },
+  {
+    path: '/shop',
+    component: () => import('../views/shop'),
   }
 ]
 

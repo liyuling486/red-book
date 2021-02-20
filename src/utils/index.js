@@ -25,3 +25,14 @@ export function convertActions (apifunc, prefix = '') {
   }
   return actions
 }
+
+export function apiToJson (data) {
+  const obj = {
+    err: 0,
+    data
+  }
+  if (Array.isArray(data)) {
+    obj.count = data.length
+  }
+  return obj
+}

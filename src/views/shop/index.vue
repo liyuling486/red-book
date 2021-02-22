@@ -33,15 +33,20 @@
           </div>
         </div>
       </div>
+      <div class="nav">
+        <goodsList></goodsList>
+      </div>
     </div>
     <!-- </van-skeleton> -->
   </div>
 </template>
 <script>
 import top from './compontents/top'
+import goodsList from './compontents/goodsList'
 export default {
   components: {
-    top
+    top,
+    goodsList
   },
   data () {
     return {
@@ -142,5 +147,8 @@ export default {
 }
 .container {
   background: #F5F5F5;
+}
+.nav {
+  margin: 10px;
 }
 </style>

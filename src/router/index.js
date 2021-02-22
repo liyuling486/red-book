@@ -38,10 +38,6 @@ const routes = [
       },
     ]
   },
-  // {
-  //   path: '/',
-  //   redirect: { name: 'home' }
-  // },
   {
     path: '/exception',
     name: 'exception',
@@ -61,6 +57,9 @@ const router = new VueRouter({
   routes
 })
 
+/**
+ * 判断路由重复跳转
+ */
 const VueRouterPush = VueRouter.prototype.push
 VueRouter.prototype.push = function push (to) {
   return VueRouterPush.call(this, to).catch(err => err)

@@ -1,18 +1,26 @@
 <template>
   <div id="app">
     <router-view/>
-    <bottomNav />
   </div>
 </template>
 
 <script>
-import bottomNav from './views/layout/bottomNav'
+import { JudgeDevice } from './utils'
 export default {
-  components: {
-    bottomNav
-  },
   data () {
     return {
+    }
+  },
+  mounted () {
+    window.onresize = () => {
+      return (() => {
+        setTimeout(() => {
+          const JudgeDeviceState = JudgeDevice(this.$route)
+          if (JudgeDeviceState) {
+            this.$router.push(JudgeDeviceState)
+          }
+        }, 200)
+      })();
     }
   }
 }

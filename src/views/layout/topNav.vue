@@ -9,7 +9,7 @@
           v-for="(item, index) in tabs"
           :key="index"
           :title="item.name"
-          :to="item.path"
+          :to="'/home/'+item.path"
         ></van-tab>
       </van-tabs>
       <div class="icon">
@@ -40,7 +40,6 @@ export default {
     }
   },
   mounted () {
-    this.$router.push('/home/find')
   }
 };
 </script>

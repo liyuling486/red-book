@@ -6,34 +6,52 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    redirect: { name: 'home' }
-  },
-  {
-    path: '/home',
-    name: 'home',
-    component: () => import('../views/home'),
+    component: () => import('../views/layout/bottomIndex'),
     children: [
       {
-        path: 'follow',
-        component: () => import('../views/home/follow')
+        path: 'home',
+        name: 'home',
+        component: () => import('../views/home'),
+        children: [
+          {
+            path: 'follow',
+            component: () => import('../views/home/follow')
+          },
+          {
+            path: 'find',
+            name: 'home.find',
+            component: () => import('../views/home/find')
+          },
+          {
+            path: 'city',
+            component: () => import('../views/home/city')
+          }
+        ]
       },
       {
-        path: 'find',
-        component: () => import('../views/home/find')
+        path: 'msg',
+        component: () => import('../views/msg'),
       },
       {
-        path: 'city',
-        component: () => import('../views/home/city')
-      }
+        path: 'shop',
+        component: () => import('../views/shop'),
+      },
     ]
   },
+  // {
+  //   path: '/',
+  //   redirect: { name: 'home' }
+  // },
   {
-    path: '/msg',
-    component: () => import('../views/msg'),
-  },
-  {
-    path: '/shop',
-    component: () => import('../views/shop'),
+    path: '/exception',
+    name: 'exception',
+    component: () => import('../views/exception/PCTerminal'),
+    children: [
+      {
+        path: 'pc',
+        name: 'exception.pc',
+      }
+    ]
   }
 ]
 
@@ -43,4 +61,8 @@ const router = new VueRouter({
   routes
 })
 
+const VueRouterPush = VueRouter.prototype.push
+VueRouter.prototype.push = function push (to) {
+  return VueRouterPush.call(this, to).catch(err => err)
+}
 export default router

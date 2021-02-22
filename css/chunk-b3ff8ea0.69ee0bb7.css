@@ -1,0 +1,1 @@
+.row{display:flex;padding:4px 10px;border-bottom:1px solid #e8e8e8}.view{height:calc(100% - 104px)}.icon{width:50px;height:40px;display:flex;justify-content:center;align-items:center}.middleTab{flex:1;padding:0 20px}.middleTab .van-tab{font-size:16px}.van-tab.van-tab--active{font-size:18px;font-weight:700}

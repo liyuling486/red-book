@@ -3,7 +3,7 @@
     <div class="top">
       <div class="user">
         <div class="imgBox">
-          <img src="@/assets/user.jpg" class="img" v-lazy="img"/>
+          <img src="@/assets/user.jpg" class="img"/>
           <div class="icon">
             <van-icon name="add" size="20" color="#FFE900" />
           </div>
@@ -19,7 +19,7 @@
       :key="index">
         <div class="itemTop">
           <div class="itemUser">
-            <img :src="item.img" class="itemUserImg" v-lazy="img">
+            <img class="itemUserImg" v-lazy="item.img">
             <span class="itemName">{{ item.cname }}</span>
             <span class="itemTime">{{ item.time }}小时前</span>
           </div>
@@ -30,7 +30,7 @@
           <van-swipe-item
             v-for="(item1, index1) in item.swipe"
             :key="index1">
-            <img :src="item1.img" v-lazy="img">
+            <img v-lazy="item1.img">
             </van-swipe-item>
         </van-swipe>
         <div class="itemBottom">

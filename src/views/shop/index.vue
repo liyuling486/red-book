@@ -65,7 +65,7 @@ export default {
     onLoad: _.throttle(function() {
       this.getList(true)
     }, 800),
-    getList () {
+    getList (flag) {
       this.$store.dispatch('shop/goods.list').then(res => {
         if (flag) {
           this.listData = this.listData.concat(res.data)

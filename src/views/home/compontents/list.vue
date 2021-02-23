@@ -5,11 +5,11 @@
     <div class="item"
       v-for="(item, index) in list"
       :key="index">
-      <img class="itemImg" :src="item.img" v-lazy="img">
+      <img class="itemImg" v-lazy="item.img">
       <div class="title">{{ item.ctitle }}</div>
       <div class="bottom">
         <div class="user">
-          <img class="head" :src="item.img1" v-lazy="img">
+          <img class="head" v-lazy="item.img1">
           {{ item.cname }}
         </div>
         <div class="collection" @click="handleColl(index)">

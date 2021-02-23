@@ -3,7 +3,7 @@
     <div class="top">
       <div class="user">
         <div class="imgBox">
-          <img src="@/assets/user.jpg" class="img" />
+          <img src="@/assets/user.jpg" class="img" v-lazy="img"/>
           <div class="icon">
             <van-icon name="add" size="20" color="#FFE900" />
           </div>
@@ -11,13 +11,15 @@
         <div class="text">分享瞬间</div>
       </div>
     </div>
-    <div class="list">
+    <van-list
+      class="list"
+      @load="onLoad">
       <div class="item"
       v-for="(item, index) in listData"
       :key="index">
         <div class="itemTop">
           <div class="itemUser">
-            <img :src="item.img" class="itemUserImg">
+            <img :src="item.img" class="itemUserImg" v-lazy="img">
             <span class="itemName">{{ item.cname }}</span>
             <span class="itemTime">{{ item.time }}小时前</span>
           </div>
@@ -28,7 +30,7 @@
           <van-swipe-item
             v-for="(item1, index1) in item.swipe"
             :key="index1">
-            <img :src="item1.img" alt="">
+            <img :src="item1.img" v-lazy="img">
             </van-swipe-item>
         </van-swipe>
         <div class="itemBottom">
@@ -53,7 +55,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </van-list>
   </div>
 </template>
 <script>
@@ -64,9 +66,16 @@ export default {
     }
   },
   methods: {
-    getList () {
+    onLoad: _.throttle(function() {
+      this.getList(true)
+    }, 800),
+    getList (flag) {
       this.$store.dispatch('home/news.followList').then(res => {
-        this.listData = res.data
+        if (flag) {
+          this.listData = this.listData.concat(res.data)
+        } else {
+          this.listData = res.data
+        }
       })
     },
     handle (type, index) {
@@ -74,7 +83,6 @@ export default {
     }
   },
   mounted () {
-    this.getList()
   }
 }
 </script>

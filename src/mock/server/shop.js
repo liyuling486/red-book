@@ -28,18 +28,22 @@ const getGoods = () => {
   const { arr } = Mock.mock({
     "arr|10-20": [
       {
-        "stage|1": [
-          "限时购",
-          "5元券",
-          "跨店满减",
-          undefined
-        ],
+        "stage|1": [ "限时购", "5元券", "跨店满减", undefined, undefined, undefined ],
         "id": "@id",
         "ctitle": "@ctitle(5, 10)",
         "desc": "@csentence(10, 30)",
         "cost": "@integer(0, 1000)",
-        "cost1": "@integer(0, 1)",
-        "img": "@dataImage(190x190)",
+        "voidCost": function () {
+          const { voidCost } = Mock.mock({
+            "voidCost|1": [ this.cost + 20, undefined ]
+          })
+          return voidCost
+        },
+        "img|1": [
+          "@dataImage(190x190)",
+          "@dataImage(190x170)",
+          "@dataImage(190x150)"
+        ],
       }
     ]
   })

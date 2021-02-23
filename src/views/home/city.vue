@@ -1,6 +1,9 @@
 <template>
   <div class="wrap">
-    <List :list="listData" @handleColl="handleColl" />
+    <List
+      :list="listData"
+      @handleColl="handleColl"
+      @onLoad="onLoad"/>
   </div>
 </template>
 <script>
@@ -15,9 +18,16 @@ export default {
     }
   },
   methods: {
-    getList () {
+    onLoad: _.throttle(function() {
+      this.getList(true)
+    }, 800),
+    getList (flag) {
       this.$store.dispatch('home/news.list').then(res => {
-        this.listData = res.data
+        if (flag) {
+          this.listData = this.listData.concat(res.data)
+        } else {
+          this.listData = res.data
+        }
       })
     },
     handleColl (index) {
@@ -25,7 +35,6 @@ export default {
     }
   },
   mounted () {
-    this.getList()
   }
 }
 </script>

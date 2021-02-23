@@ -1,14 +1,15 @@
 <template>
-  <div class="list">
+  <van-list
+    class="list"
+    @load="onLoad">
     <div class="item"
       v-for="(item, index) in list"
       :key="index">
-      <img v-if="index%3" class="itemImg" :src="item.img1">
-      <img v-else class="itemImg" :src="item.img2">
+      <img class="itemImg" :src="item.img" v-lazy="img">
       <div class="title">{{ item.ctitle }}</div>
       <div class="bottom">
         <div class="user">
-          <img class="head" :src="item.img2">
+          <img class="head" :src="item.img1" v-lazy="img">
           {{ item.cname }}
         </div>
         <div class="collection" @click="handleColl(index)">
@@ -18,7 +19,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </van-list>
 </template>
 <script>
 export default {
@@ -30,11 +31,15 @@ export default {
   },
   data () {
     return {
+      refreshing: false,
     }
   },
   methods: {
     handleColl (index) {
       this.$emit('handleColl', index)
+    },
+    onLoad () {
+      this.$emit('onLoad')
     }
   }
 }

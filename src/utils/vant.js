@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { Button, Tabbar, TabbarItem, badge, Tab, Tabs, icon, Notify, Swipe, SwipeItem, Grid, GridItem, Field, Image as VanImage, Skeleton } from 'vant'
+import { Button, Tabbar, TabbarItem, badge, Tab, Tabs, icon, Notify, Swipe, SwipeItem, Grid, GridItem, Field, Image as VanImage, Skeleton, PullRefresh, List, Lazyload } from 'vant'
 
 Vue.use(Button)
 Vue.use(Tabbar)
@@ -16,5 +16,8 @@ Vue.use(GridItem)
 Vue.use(Field)
 Vue.use(VanImage)
 Vue.use(Skeleton)
+Vue.use(PullRefresh)
+Vue.use(List)
+Vue.use(Lazyload)
 
 Vue.prototype.$notify = Notify

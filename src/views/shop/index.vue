@@ -2,7 +2,7 @@
   <div>
     <!-- <van-skeleton title :row="3" :loading="loading"> -->
     <top />
-    <van-image :src="require('@/assets/shop/active.jpg')" />
+    <van-image :src="require('@/assets/shop/active.jpg')" lazy-load/>
     <div class="redBoxBg">
       <div class="redBox">
         <div class="redBoxItem"
@@ -12,13 +12,13 @@
           <div class="redBoxLeft">
             <div class="redBoxT">{{ item.title }}</div>
             <div class="redBoxS">{{ item.text }}</div>
-            <van-image radius="10" class="redBoxRight" :src="item.img2" />
+            <van-image radius="10" class="redBoxRight" :src="item.img2" lazy-load/>
           </div>
-          <van-image radius="10" class="redBoxRight" :src="item.img" />
+          <van-image radius="10" class="redBoxRight" :src="item.img" lazy-load/>
         </div>
       </div>
       <div class="redBoxBottom">
-        <van-image radius="10" :src="active.img" />
+        <van-image radius="10" :src="active.img" lazy-load/>
       </div>
     </div>
     <div class="container">
@@ -26,7 +26,7 @@
         <div class="newItem"
         v-for="(item,index) in active.new"
         :key="index">
-          <van-image class="redBoxBottomImg" :src="item.img" />
+          <van-image class="redBoxBottomImg" :src="item.img" lazy-load/>
           <div class="redBoxBottomBox">
             <div class="redBoxBottomTitle">{{ item.title }}</div>
             <div class="redBoxBottomText">{{ item.text }}</div>
@@ -37,7 +37,8 @@
         <navList></navList>
       </div>
       <div class="goodsBox">
-        <goodsList :list="listData"></goodsList>
+        <goodsList :list="listData"
+          @onLoad="onLoad"></goodsList>
       </div>
     </div>
     <!-- </van-skeleton> -->
@@ -61,10 +62,16 @@ export default {
     }
   },
   methods: {
+    onLoad: _.throttle(function() {
+      this.getList(true)
+    }, 800),
     getList () {
       this.$store.dispatch('shop/goods.list').then(res => {
-        this.listData = res.data
-        console.log(res.data)
+        if (flag) {
+          this.listData = this.listData.concat(res.data)
+        } else {
+          this.listData = res.data
+        }
       })
     },
     getActive () {

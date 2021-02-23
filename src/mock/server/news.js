@@ -3,14 +3,18 @@ import { apiToJson } from '@/utils'
 
 const getNews = () => {
   const { arr } = Mock.mock({
-    "arr|10-15": [
+    "arr|10": [
       {
         "id": "@id",
         "ctitle": "@ctitle(5, 20)",
         "cname": "@cname()",
         "num": "@integer(0, 10000)",
-        "img1": "@dataImage(200x200)",
-        "img2": "@dataImage(200x150)",
+        "img|1": [
+          "@dataImage(200x200)",
+          "@dataImage(200x170)",
+          "@dataImage(200x150)"
+        ],
+        "img1": "@dataImage(200x150)",
       }
     ]
   })

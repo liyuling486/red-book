@@ -1,21 +1,24 @@
 <template>
-  <div class="list">
+  <van-list
+    class="list"
+    @load="onLoad">
     <div
       class="item"
       v-for="(item,index) in list"
       :key="index"
       @click="index1=index">
-      <van-image fit="contain" :src="item.img" />
+      <van-image fit="contain" :src="item.img" lazy-load />
       <div class="box">
         <div class="title">{{ item.ctitle }}</div>
         <div class="desc">{{ item.desc }}</div>
         <div class="cost">
           <div class="costNum">￥{{ item.cost }}</div>
-          <div class="costBadge"> 限时购 </div>
+          <div v-if="item.stage" class="costBadge"> {{ item.stage }} </div>
+          <div v-if="item.voidCost" class="voidCost">￥{{ item.voidCost }}</div>
         </div>
       </div>
     </div>
-  </div>
+  </van-list>
 </template>
 <script>
 export default {
@@ -28,15 +31,16 @@ export default {
   data () {
     return {
     }
+  },
+  methods: {
+    onLoad () {
+      this.$emit('onLoad')
+    }
   }
 }
 </script>
 <style scoped>
 .list {
-  /* display: grid;
-  grid-row-gap: 6px;
-  grid-column-gap: 6px;
-  grid-template-columns: repeat(2, calc(50% - 3px)); */
   column-count: 2;
   column-width: 50%;
   column-gap: 4px;
@@ -75,14 +79,20 @@ export default {
   font-weight: bold;
 }
 .costBadge {
-  height: 16px;
+  height: 20px;
   background: #F31735;
   color: #fff;
   font-size: 12px;
   display: flex;
   align-items: center;
   border-radius: 4px;
-  padding: 0 2px;
-  margin: 0 10px;
+  padding: 0 4px;
+  margin: 0 4px;
+  transform: scale(0.8);
+}
+.voidCost {
+  font-size: 14px;
+  text-decoration: line-through;
+  color: #9A9A9A;
 }
 </style>

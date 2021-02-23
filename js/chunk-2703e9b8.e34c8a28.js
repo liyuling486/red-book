@@ -1,2 +1,2 @@
 (window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2703e9b8"],{"3b3b":function(n,t,e){"use strict";e.r(t);var c=function(){var n=this,t=n.$createElement,e=n._self._c||t;return e("div",{staticClass:"container"},[n._v("这是移动端项目哦")])},s=[],i=(e("882e"),e("2877")),u={},a=Object(i["a"])(u,c,s,!1,null,"5bc79764",null);t["default"]=a.exports},"882e":function(n,t,e){"use strict";e("bd75")},bd75:function(n,t,e){}}]);
-//# sourceMappingURL=chunk-2703e9b8.27fe25b7.js.map
+//# sourceMappingURL=chunk-2703e9b8.e34c8a28.js.map

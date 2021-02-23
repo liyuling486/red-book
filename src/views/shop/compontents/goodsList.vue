@@ -1,27 +1,25 @@
 <template>
-  <van-list
-    class="list"
-    @load="onLoad">
-    <div
-      class="item"
-      v-for="(item,index) in list"
-      :key="index"
-      @click="index1=index">
-      <van-image fit="contain" :src="item.img" lazy-load />
-      <div class="box">
-        <div class="title">{{ item.ctitle }}</div>
-        <div class="desc">{{ item.desc }}</div>
+  <vue-waterfall-easy
+    :imgsArr="list"
+    srcKey="img"
+    @scrollReachBottom="onLoad">
+      <div class="box" slot-scope="item">
+        <div class="title">{{ item.value.ctitle }}</div>
+        <div class="desc">{{ item.value.desc }}</div>
         <div class="cost">
-          <div class="costNum">￥{{ item.cost }}</div>
-          <div v-if="item.stage" class="costBadge"> {{ item.stage }} </div>
-          <div v-if="item.voidCost" class="voidCost">￥{{ item.voidCost }}</div>
+          <div class="costNum">￥{{ item.value.cost }}</div>
+          <div v-if="item.value.stage" class="costBadge"> {{ item.value.stage }} </div>
+          <div v-if="item.value.voidCost" class="voidCost">￥{{ item.value.voidCost }}</div>
         </div>
       </div>
-    </div>
-  </van-list>
+  </vue-waterfall-easy>
 </template>
 <script>
+import vueWaterfallEasy from 'vue-waterfall-easy'
 export default {
+  components: {
+    vueWaterfallEasy,
+  },
   props: {
     list: {
       type: Array,

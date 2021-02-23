@@ -5,6 +5,7 @@ import store from './store/'
 import './utils/vant'
 import './mock'
 import './permission'
+import './global.css'
 
 Vue.config.productionTip = false
 

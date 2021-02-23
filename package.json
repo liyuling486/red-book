@@ -27,7 +27,8 @@
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
     "less-loader": "^7.3.0",
-    "vue-template-compiler": "^2.6.11"
+    "vue-template-compiler": "^2.6.11",
+    "vue-waterfall-easy": "^2.4.4"
   },
   "eslintConfig": {
     "root": true,

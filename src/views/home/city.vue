@@ -7,6 +7,7 @@
   </div>
 </template>
 <script>
+import _ from 'lodash'
 import List from './compontents/list'
 export default {
   components: {
@@ -35,6 +36,7 @@ export default {
     }
   },
   mounted () {
+    this.getList()
   }
 }
 </script>

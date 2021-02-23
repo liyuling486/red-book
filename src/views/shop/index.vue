@@ -2,7 +2,7 @@
   <div>
     <!-- <van-skeleton title :row="3" :loading="loading"> -->
     <top />
-    <van-image :src="require('@/assets/shop/active.jpg')" lazy-load/>
+    <van-image :src="require('@/assets/shop/active.jpg')"/>
     <div class="redBoxBg">
       <div class="redBox">
         <div class="redBoxItem"
@@ -12,13 +12,13 @@
           <div class="redBoxLeft">
             <div class="redBoxT">{{ item.title }}</div>
             <div class="redBoxS">{{ item.text }}</div>
-            <van-image radius="10" class="redBoxRight" :src="item.img2" lazy-load/>
+            <van-image radius="10" class="redBoxRight" :src="item.img2"/>
           </div>
-          <van-image radius="10" class="redBoxRight" :src="item.img" lazy-load/>
+          <van-image radius="10" class="redBoxRight" :src="item.img"/>
         </div>
       </div>
       <div class="redBoxBottom">
-        <van-image radius="10" :src="active.img" lazy-load/>
+        <van-image radius="10" :src="active.img"/>
       </div>
     </div>
     <div class="container">
@@ -26,7 +26,7 @@
         <div class="newItem"
         v-for="(item,index) in active.new"
         :key="index">
-          <van-image class="redBoxBottomImg" :src="item.img" lazy-load/>
+          <van-image class="redBoxBottomImg" :src="item.img"/>
           <div class="redBoxBottomBox">
             <div class="redBoxBottomTitle">{{ item.title }}</div>
             <div class="redBoxBottomText">{{ item.text }}</div>
@@ -47,6 +47,7 @@
 <script>
 import top from './compontents/top'
 import navList from './compontents/nav'
+import _ from 'lodash'
 import goodsList from './compontents/goodsList'
 export default {
   components: {

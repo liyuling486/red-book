@@ -11,7 +11,7 @@ import List from './compontents/list'
 import _ from 'lodash'
 export default {
   components: {
-    List
+    List,
   },
   data () {
     return {
@@ -36,6 +36,7 @@ export default {
     }
   },
   mounted () {
+    this.getList()
   }
 }
 </script>

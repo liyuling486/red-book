@@ -1,28 +1,31 @@
 <template>
-  <van-list
-    class="list"
-    @load="onLoad">
-    <div class="item"
-      v-for="(item, index) in list"
-      :key="index">
-      <img class="itemImg" v-lazy="item.img">
-      <div class="title">{{ item.ctitle }}</div>
+  <vue-waterfall-easy
+    :imgsArr="list"
+    srcKey="img"
+    @scrollReachBottom="onLoad">
+    <div class="img-info" slot-scope="item">
+      <div class="title">{{ item.value.ctitle }}</div>
       <div class="bottom">
         <div class="user">
-          <img class="head" v-lazy="item.img1">
-          {{ item.cname }}
+          <img class="head" v-lazy="item.value.img1">
+          {{ item.value.cname }}
         </div>
-        <div class="collection" @click="handleColl(index)">
-          <van-icon v-if="!item.collection" name="like-o" style="margin-right:2px"/>
+        <div class="collection" @click="handleColl(item.index)">
+          <van-icon v-if="!item.value.collection" name="like-o" style="margin-right:2px"/>
           <van-icon v-else name="like" color="#f00" style="margin-right:2px;" />
-          <span>{{ item.num }}</span>
+          <span>{{ item.value.num }}</span>
         </div>
       </div>
     </div>
-  </van-list>
+  </vue-waterfall-easy>
 </template>
 <script>
+import vueWaterfallEasy from 'vue-waterfall-easy'
+
 export default {
+  components: {
+    vueWaterfallEasy,
+  },
   props: {
     list: {
       type: Array,
@@ -31,7 +34,6 @@ export default {
   },
   data () {
     return {
-      refreshing: false,
     }
   },
   methods: {
@@ -45,20 +47,6 @@ export default {
 }
 </script>
 <style scoped>
-
-.list {
-  column-count: 2;
-  column-width: 50%;
-  column-gap: 4px;
-}
-
-.item {
-  break-inside: avoid;
-  background: #fff;
-  margin-bottom: 4px;
-  border-radius: 4px;
-  overflow: hidden;
-}
 
 .itemImg {
   width: 100%;

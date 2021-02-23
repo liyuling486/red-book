@@ -1,105 +1,88 @@
 <template>
   <div class="list">
     <div
-      :class="'item ' + (index1==index?'act':'')"
+      class="item"
       v-for="(item,index) in list"
       :key="index"
       @click="index1=index">
-      <div class="title">
-        {{ item.title }}
+      <van-image fit="contain" :src="item.img" />
+      <div class="box">
+        <div class="title">{{ item.ctitle }}</div>
+        <div class="desc">{{ item.desc }}</div>
+        <div class="cost">
+          <div class="costNum">￥{{ item.cost }}</div>
+          <div class="costBadge"> 限时购 </div>
+        </div>
       </div>
-      <div class="text">
-        {{ item.text }}
-      </div>
-      <div class="line"></div>
     </div>
   </div>
-  <!-- <van-tabs v-model="active">
-    <van-tab>
-      <template #title>
-        <div class="title">
-          推荐
-        </div>
-        <div class="text">
-          猜你喜欢
-        </div>
-      </template>
-      内容 1
-    </van-tab>
-    <van-tab title="标签 2">内容 2</van-tab>
-    <van-tab title="标签 3">内容 3</van-tab>
-    <van-tab title="标签 4">内容 4</van-tab>
-  </van-tabs> -->
 </template>
 <script>
 export default {
+  props: {
+    list: {
+      type: Array,
+      default: () => []
+    }
+  },
   data () {
     return {
-      index1: 0,
-      list: [{
-        title: '推荐',
-        text: '猜你喜欢'
-      }, {
-        title: '新年好运',
-        text: '限时抢购'
-      }, {
-        title: '美妆',
-        text: '彩妆香水'
-      }, {
-        title: '时尚',
-        text: '流行穿搭'
-      }, {
-        title: '配饰',
-        text: '箱包配饰'
-      }]
     }
   }
 }
 </script>
 <style scoped>
 .list {
-  display: flex;
-  justify-content: center;
-  padding: 10px 0;
+  /* display: grid;
+  grid-row-gap: 6px;
+  grid-column-gap: 6px;
+  grid-template-columns: repeat(2, calc(50% - 3px)); */
+  column-count: 2;
+  column-width: 50%;
+  column-gap: 4px;
 }
 .item {
-  width: 20%;
-  text-align: center;
-  padding: 0 6px;
-  position: relative;
-}
-.list .item:last-child .line {
-  display: none;
-}
-.list .item:nth-child(2) .title {
-  font-weight: bold;
-  color: #D81C37;
+  break-inside: avoid;
+  background: #fff;
+  border-radius: 4px;
+  overflow: hidden;
 }
 .title {
   font-size: 14px;
-  color: #111;
+  font-weight: bold;
+  color: #252525;
+  margin-bottom: 2px;
 }
-.text {
+.desc {
+  color: #454545;
   font-size: 12px;
-  color: #939393;
-  line-height: 20px;
-  border-radius: 10px;
+  line-height: 18px;
+  letter-spacing: 1px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
 }
-.act .title {
-  color: #F71836;
+.box {
+  padding: 4px 8px;
 }
-.act .text {
+.cost {
+  display: flex;
+  align-items: center;
+}
+.costNum {
+  color: #F31735;
+  font-weight: bold;
+}
+.costBadge {
+  height: 16px;
+  background: #F31735;
   color: #fff;
-  background: #F71836;
-}
-.line {
-  width: 1px;
-  height: 20px;
-  right: 0;
-  background: #E8E8E8;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  margin: auto;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  border-radius: 4px;
+  padding: 0 2px;
+  margin: 0 10px;
 }
 </style>

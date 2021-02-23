@@ -34,7 +34,10 @@
         </div>
       </div>
       <div class="nav">
-        <goodsList></goodsList>
+        <navList></navList>
+      </div>
+      <div class="goodsBox">
+        <goodsList :list="listData"></goodsList>
       </div>
     </div>
     <!-- </van-skeleton> -->
@@ -42,29 +45,38 @@
 </template>
 <script>
 import top from './compontents/top'
+import navList from './compontents/nav'
 import goodsList from './compontents/goodsList'
 export default {
   components: {
     top,
-    goodsList
+    goodsList,
+    navList
   },
   data () {
     return {
       active: {},
-      loading: false
+      loading: false,
+      listData: []
     }
   },
   methods: {
+    getList () {
+      this.$store.dispatch('shop/goods.list').then(res => {
+        this.listData = res.data
+        console.log(res.data)
+      })
+    },
     getActive () {
       this.$store.dispatch('shop/active.active').then(res => {
         this.active = res.data
-        console.log(res.data)
         this.loading = true
       })
     }
   },
   mounted () {
     this.getActive()
+    this.getList()
   }
 }
 </script>
@@ -149,6 +161,10 @@ export default {
   background: #F5F5F5;
 }
 .nav {
-  margin: 10px;
+  margin: 0 10px;
+}
+.goodsBox {
+  padding: 6px;
+  margin-bottom: 50px;
 }
 </style>

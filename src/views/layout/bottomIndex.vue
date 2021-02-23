@@ -16,7 +16,7 @@ export default {
     }
   },
   mounted () {
-    this.$router.push({ name: 'home.find' })
+    // this.$router.push({ name: 'home.find' })
   }
 }
 </script>

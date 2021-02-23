@@ -1,47 +1,43 @@
 import Mock from 'mockjs'
 import { apiToJson } from '@/utils'
 
-const Random = Mock.Random
 const getNews = () => {
-  const len = Random.integer(20, 30)
-  const arr = []
-  for (let i = 0; i < len; i++) {
-    arr.push({
-      id: Random.id(),
-      ctitle: Random.ctitle(5, 20),
-      cname: Random.cname(),
-      num: Random.integer(0, 10000),
-      img1: Random.dataImage('200x200'),
-      img2: Random.dataImage('200x150'),
-    })
-  }
+  const { arr } = Mock.mock({
+    "arr|10-15": [
+      {
+        "id": "@id",
+        "ctitle": "@ctitle(5, 20)",
+        "cname": "@cname()",
+        "num": "@integer(0, 10000)",
+        "img1": "@dataImage(200x200)",
+        "img2": "@dataImage(200x150)",
+      }
+    ]
+  })
   return apiToJson(arr)
 }
 
 const getFollow = () => {
-  const len = 5
-  const arr = []
-  for (let i = 0; i < len; i++) {
-    const item = {
-      id: Random.id(),
-      cname: Random.cname(),
-      time: Random.integer(0, 24),
-      img: Random.dataImage('200x200'),
-      swipe: [],
-      like: false,
-      star: false,
-      likeNum: Random.integer(0, 1000),
-      starNum: Random.integer(0, 1000),
-      moreNum: Random.integer(0, 1000),
-    }
-    const swipeLen = Random.integer(1, 5)
-    for (let j = 0; j < swipeLen; j++) {
-      item.swipe.push({
-        img: Random.dataImage('400x300')
-      })
-    }
-    arr.push(item)
-  }
+  const { arr } = Mock.mock({
+    "arr|5": [
+      {
+        "id": "@id",
+        "cname": "@cname()",
+        "time": "@integer(0, 24)",
+        "img": "@dataImage(200x200)",
+        "like": false,
+        "star": false,
+        "likeNum": "@integer(0, 1000)",
+        "starNum": "@integer(0, 1000)",
+        "moreNum": "@integer(0, 1000)",
+        "swipe|1-5": [
+          {
+            "img": "@dataImage(400x300)",
+          }
+        ]
+      }
+    ]
+  })
   return apiToJson(arr)
 }
 

@@ -7,10 +7,12 @@ const routes = [
   {
     path: '/',
     component: () => import('../views/layout/bottomIndex'),
+    redirect: '/home/find',
     children: [
       {
         path: 'home',
         name: 'home',
+        redirect: '/home/find',
         component: () => import('../views/home'),
         children: [
           {

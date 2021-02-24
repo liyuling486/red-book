@@ -17,6 +17,7 @@ const routes = [
         children: [
           {
             path: 'follow',
+            name: 'home.follow',
             component: () => import('../views/home/follow')
           },
           {
@@ -26,16 +27,19 @@ const routes = [
           },
           {
             path: 'city',
+            name: 'home.city',
             component: () => import('../views/home/city')
           }
         ]
       },
       {
         path: 'msg',
+        name: 'msg',
         component: () => import('../views/msg'),
       },
       {
         path: 'shop',
+        name: 'shop',
         component: () => import('../views/shop'),
       },
     ]

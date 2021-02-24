@@ -13,8 +13,16 @@ export default {
   data() {
     return {
       active: 0,
-      badge: 8
+      badge: 8,
+      routeObj: {
+        'home.find': 0,
+        'shop': 1,
+        'msg': 3
+      }
     }
+  },
+  mounted () {
+    this.active = this.routeObj[this.$route.name]
   }
 }
 </script>

@@ -172,6 +172,7 @@ export default {
   margin: 0 10px;
 }
 .goodsBox {
+  height: 100vh;
   padding: 6px;
   margin-bottom: 50px;
 }
